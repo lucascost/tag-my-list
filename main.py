@@ -34,7 +34,7 @@ def read_lists(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
 
 @app.post("/", response_model=schemas.List)
 def create_list(list: schemas.ListCreate, db: Session = Depends(get_db)):
-    db_list = crud.get_list(db, list_info=list.id)
+    db_list = crud.get_list(db, list_info=list.title)
     if db_list:
         raise HTTPException(status_code=400, detail="Title already registered")
     return crud.create_list(db=db, list=list)
