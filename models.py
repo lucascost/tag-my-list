@@ -3,12 +3,13 @@ from sqlalchemy.orm import relationship
 
 from database import Base
 
+
 class List(Base):
     __tablename__ = 'lists'
 
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, unique=True, index=True)
-    type_id = Column(Integer, ForeignKey("list_types.id"))
+    type_id = Column(Integer, ForeignKey("list_types.id", ondelete="CASCADE"))
     type = relationship("ListType")
 
 
